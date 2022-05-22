@@ -50,7 +50,7 @@ def cosdis(seq1, seq2):
     # by definition of cosine distance we have
 
     if apt == 1:
-        print(intersect)
+        print("Sequences amino acid intersections = {}".format(intersect))
 
     return sum(seq1[0][ch]*seq2[0][ch] for ch in intersect)/seq1[2]/seq2[2]
 
@@ -60,7 +60,7 @@ for insilicoseqline in insilicoseq:
         try:
             cosine = cosdis(seq2vec(msseqline), seq2vec(insilicoseqline))
             if cosine > threshold:
-                print("{},{},{}".format(msseqline, insilicoseqline, cosine))
+                print("MS seq, in silico seq, cosine value = {},{},{}".format(msseqline, insilicoseqline, cosine))
                 apt = 1
             else:
                 apt = 0
