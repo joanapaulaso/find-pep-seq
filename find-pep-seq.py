@@ -58,9 +58,9 @@ threshold = 0.95
 for insilicoseqline in insilicoseq:
     for msseqline in msseq:
         try:
-            res = cosdis(seq2vec(msseqline), seq2vec(insilicoseqline))
-            if res > threshold:
-                print("{},{},{}".format(msseqline, insilicoseqline, res))
+            cosine = cosdis(seq2vec(msseqline), seq2vec(insilicoseqline))
+            if cosine > threshold:
+                print("{},{},{}".format(msseqline, insilicoseqline, cosine))
                 apt = 1
             else:
                 apt = 0
