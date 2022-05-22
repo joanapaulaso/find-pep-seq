@@ -32,7 +32,7 @@ msseq_file.close()
 
 # print(seqcount)
 
-def word2vec(seq):
+def seq2vec(seq):
     
     cseq = Counter(seq) # count the aminoacids in sequence
     diffseq = set(cseq) # set of the different aminoacids in sequence
@@ -58,7 +58,7 @@ threshold = 0.95
 for insilicoseqline in insilicoseq:
     for msseqline in msseq:
         try:
-            res = cosdis(word2vec(msseqline), word2vec(insilicoseqline))
+            res = cosdis(seq2vec(msseqline), seq2vec(insilicoseqline))
             if res > threshold:
                 print("{},{},{}".format(msseqline, insilicoseqline, res))
                 apt = 1
