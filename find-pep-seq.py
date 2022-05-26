@@ -18,8 +18,8 @@ for filename in os.scandir(directory):
         insilicoseq = insilicoseq_filter.split("\n")
         insilicoseq_file.close()
 
-        msseq_file = open("id_sequences_ms.txt", "r") # change the filename here
-        # msseq_file = open("id_sequences_ms_less_3kDa.txt", "r") # change the filename here
+        # msseq_file = open("id_sequences_ms.txt", "r") # change the filename here
+        msseq_file = open("id_sequences_ms_higher_3kDa.txt", "r") # change the filename here
         msseq_filter = msseq_file.read()
         msseq = msseq_filter.split("\n")
         msseq_file.close()
@@ -35,9 +35,9 @@ for filename in os.scandir(directory):
         
         def cosdis(seq1, seq2): # function that check intersections and calculates cosine
             
-            intersect = seq1[1].intersection(seq2[1] )# which amino acids are common to the two seqs?
+            intersect = seq1[1].intersection(seq2[1] ) # which amino acids are common to the two seqs?
 
-            return sum(seq1[0][ch] * seq2[0][ch] for ch in intersect) / seq1[2] / seq2[2]
+            return sum(seq1[0][ch] * seq2[0][ch] for ch in intersect) / (seq1[2] * seq2[2])
 
         def seqs_len(seq1, seq2): # sequences length difference normalization
 
@@ -71,8 +71,8 @@ for filename in os.scandir(directory):
 
 header = ["MS seq", "in silico seq", "cosine value", "seq difference", "protein", "Cosine threshold = {}".format(threshold), "Seq max diff = {}".format(seq_min_diff)]
 
+# with open('seq_results_higher_3kDa.csv', 'w', encoding='UTF8', newline='') as f:
 with open('seq_results_higher_3kDa.csv', 'w', encoding='UTF8', newline='') as f:
-# with open('seq_results_less_3kDa.csv', 'w', encoding='UTF8', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(header)
     writer.writerows(included)
